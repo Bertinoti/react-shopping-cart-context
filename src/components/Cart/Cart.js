@@ -1,12 +1,17 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
 import ShoppingCartItem from "../ShoppingCartItem";
-import Button from "../Button";
+// import Button from "../Button";
 
 function getCartTotal(cart) {
   return cart.reduce((accum, item) => {
     return accum + item.price * item.quantity;
   }, 0);
+}
+
+function changeRoute() {
+  <Link to='./checkout'/>
 }
 
 function Cart({ cartItems, handleRemove, handleChange, ...props }) {
@@ -49,7 +54,7 @@ function Cart({ cartItems, handleRemove, handleChange, ...props }) {
               <hr />
             </div>
             <div className="col">
-              <Button>Checkout</Button>
+              <Link to='./checkout' disable={cartItems.length <= 0} onClick={changeRoute}>Checkout</Link>
             </div>
           </div>
         </div>
