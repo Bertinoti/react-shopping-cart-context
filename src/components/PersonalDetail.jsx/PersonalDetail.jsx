@@ -12,7 +12,7 @@ const validationSchema = yup.object({
     fullName: yup
         .string('Enter your Full Name')
         .required('The Name is Required')
-        .min(2, 'Name too Short')
+        .min(3, 'Name too Short')
         .max(50, 'Name too Big'),
     email: yup
         .string('Enter your email')
@@ -36,6 +36,9 @@ const PersonalDetail = () => {
             alert(JSON.stringify(values, null, 2));
         },
     });
+
+    console.log(formik.values)
+    // console.log(value)
 
     return (
         <div className='formSection'>
@@ -65,29 +68,16 @@ const PersonalDetail = () => {
                 <PhoneInput
                     fullWidth
                     placeholder='677 898 989'
-                    margin = "1em"
                     id="phoneNumber"
                     name="phoneNumber"
-                    label="phoneNumber"
-                    type="phoneNumber"
                     value={formik.values.phoneNumber}
-                    onChange={formik.handleChange}
+                    // eslint-disable-next-line
+                    onChange={value => formik.values.phoneNumber = value}
                     error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                     helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
                     country='es'
                     regions='europe'
                 />
-                {/* <TextField
-                    fullWidth
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    label="phoneNumber"
-                    type="phoneNumber"
-                    value={formik.values.phoneNumber}
-                    onChange={formik.handleChange}
-                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                /> */}
                 <Button color="primary" variant="contained" fullWidth type="submit">
                     Next
                 </Button>

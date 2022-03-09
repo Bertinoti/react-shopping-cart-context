@@ -1,15 +1,17 @@
 import React from 'react'
 import AppHeaderCheckOut from '../AppHeaderCheckOut';
-import Billing from '../Billing/Billing';
+// import Billing from '../Billing/Billing';
 import Footer from '../Footer';
+import Payment from '../Payment';
 // import PersonalDetail from '../PersonalDetail.jsx/PersonalDetail';
 
-function Checkout() {
+const Checkout = () => {
     return(
         <>
             <AppHeaderCheckOut/>
             {/* <PersonalDetail/> */}
-            <Billing/>
+            {/* <Billing/> */}
+            <Payment/>
             <Footer/>
         </>
     )

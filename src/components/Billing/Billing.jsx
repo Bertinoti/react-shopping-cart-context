@@ -44,7 +44,6 @@ const Billing = () => {
         },
     });
 
-    // console.log( typeof (formik.values.region))
     return (
         <div className='formSection'>
             <form onSubmit={formik.handleSubmit}>
