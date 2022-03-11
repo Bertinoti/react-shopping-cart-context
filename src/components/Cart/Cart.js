@@ -1,6 +1,8 @@
+import { Button } from "@material-ui/core";
 import React from "react";
 
 import { Link } from "react-router-dom";
+// import Button from "../Button";
 import ShoppingCartItem from "../ShoppingCartItem";
 // import Button from "../Button";
 
@@ -10,11 +12,14 @@ function getCartTotal(cart) {
   }, 0);
 }
 
-function changeRoute() {
-  <Link to='./checkout'/>
-}
+// const changeRoute = () => {
+//   return (
+//     <Link to='./checkout/personalDetail' />
+//   )
+// }
 
 function Cart({ cartItems, handleRemove, handleChange, ...props }) {
+
   return (
     <aside {...props}>
       <div className="row flex-column">
@@ -54,12 +59,21 @@ function Cart({ cartItems, handleRemove, handleChange, ...props }) {
               <hr />
             </div>
             <div className="col">
-              <Link to='./checkout' disable={cartItems.length <= 0} onClick={changeRoute}>Checkout</Link>
-            </div>
+              <Button
+               // eslint-disable-next-line
+              disabled = {(cartItems.length > 0)? false : true }
+              variant="contained"
+              color="primary"
+              component={Link}
+              to="./checkout/personalDetail"
+              >
+              Checkout
+            </Button>
           </div>
         </div>
       </div>
-    </aside>
+    </div>
+    </aside >
   );
 }
 

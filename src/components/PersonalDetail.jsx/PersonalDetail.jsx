@@ -1,12 +1,13 @@
-import React from 'react'
+/* eslint-disable */
+import React, { useContext } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-
-
+import { AppContext } from '../../UseContext';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const validationSchema = yup.object({
     fullName: yup
@@ -25,6 +26,8 @@ const validationSchema = yup.object({
 });
 
 const PersonalDetail = () => {
+    const location = useHistory()
+    const { PersonalData } = useContext(AppContext)
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -33,12 +36,10 @@ const PersonalDetail = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            PersonalData(values);
+            location.push('/checkout/billingDetail')
         },
     });
-
-    console.log(formik.values)
-    // console.log(value)
 
     return (
         <div className='formSection'>

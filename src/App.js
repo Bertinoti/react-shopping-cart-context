@@ -205,7 +205,7 @@ function App() {
             handleChange={handleChange}
           />
         </Route>
-        <Route path="/checkout">
+        <Route path="/checkout/:id">
           <Checkout/>
         </Route>
       </Switch>

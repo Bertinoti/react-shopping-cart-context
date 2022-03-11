@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import { useHistory } from 'react-router-dom';
+import { AppContext } from '../../UseContext';
 
 
 
@@ -27,6 +29,8 @@ const validationSchema = yup.object({
 });
 
 const Billing = () => {
+    const location = useHistory()
+    const { AddressData } = useContext(AppContext)
 
     const formik = useFormik({
         initialValues: {
@@ -38,9 +42,8 @@ const Billing = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log('>>>>>>>>>>>>>>>>>>>>>')
-            // eslint-disable-next-line 
-            alert(JSON.stringify(values, null, 2));
+            AddressData(values);
+            location.push('/checkout/paymentDetail')
         },
     });
 
