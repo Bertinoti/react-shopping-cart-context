@@ -1,22 +1,11 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 
+import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-// import Button from "../Button";
+
 import ShoppingCartItem from "../ShoppingCartItem";
-// import Button from "../Button";
+import { getCartTotal } from "../Functions";
 
-function getCartTotal(cart) {
-  return cart.reduce((accum, item) => {
-    return accum + item.price * item.quantity;
-  }, 0);
-}
-
-// const changeRoute = () => {
-//   return (
-//     <Link to='./checkout/personalDetail' />
-//   )
-// }
 
 function Cart({ cartItems, handleRemove, handleChange, ...props }) {
 

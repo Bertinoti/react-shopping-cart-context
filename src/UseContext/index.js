@@ -3,8 +3,8 @@ import React, { useEffect, useReducer } from "react";
 import { createContext, useState } from 'react';
 import { ControlStateR, } from "../UseReducer";
 export const AppContext = createContext();
-import useLocalStorage from "../hooks/useLocalStorage"
-import { checkoutData } from "../components/Functions";
+import { USER_DETAIL } from "../components/Contants";
+
 export const Provider = ({ children }) => {
     const initialstate = {
         personalDetail: {
@@ -35,7 +35,9 @@ export const Provider = ({ children }) => {
     const [stateR, dispatchR] = useReducer(ControlStateR, initialstate)
 
     useEffect(() => {
-        localStorage.setItem('checkoutData', JSON.stringify(stateR))
+        if(stateR.personalDetail.fullName !== '' ){
+            localStorage.setItem( USER_DETAIL , JSON.stringify(stateR))
+        }
     }, [stateR])
 
 

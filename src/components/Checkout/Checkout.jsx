@@ -19,7 +19,7 @@ const Checkout = () => {
             {id === 'personalDetail' && <PersonalDetail />}
             {id === 'billingDetail' && <Billing />}
             {id === 'paymentDetail' && <Payment />}
-            {id === 'orderConfirm' && <OrderConfirm />}
+            {id === 'orderConfirm' && <OrderConfirm/>}
 
             <Footer />
         </>

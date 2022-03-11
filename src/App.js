@@ -9,6 +9,9 @@ import * as api from "./api";
 import useLocalStorage from "./hooks/useLocalStorage";
 import loadLocalStorageItems from "./utils/loadLocalStorageItems";
 import Checkout from "./components/Checkout";
+import { CART_ITEMS_LOCAL_STORAGE_KEY, PRODUCTS_LOCAL_STORAGE_KEY } from "./components/Contants";
+
+
 
 function buildNewCartItem(cartItem) {
   if (cartItem.quantity >= cartItem.unitsInStock) {
@@ -27,8 +30,6 @@ function buildNewCartItem(cartItem) {
   };
 }
 
-const PRODUCTS_LOCAL_STORAGE_KEY = "react-sc-state-products";
-const CART_ITEMS_LOCAL_STORAGE_KEY = "react-sc-state-cart-items";
 
 function App() {
   const [products, setProducts] = useState(() =>
@@ -186,9 +187,6 @@ function App() {
         <Route path="/new-product">
           <NewProduct saveNewProduct={saveNewProduct} />
         </Route>
-        {/* <Route exact path='/'>
-            <Redirect to='/'/>
-        </Route> */}
         <Route path="/" exact>
           <Home
             fullWidth
