@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useContext } from 'react'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,10 +12,12 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { cleanCart, getCartTotal, saveOrders } from '../Functions';
 import { CART_ITEMS_LOCAL_STORAGE_KEY, ORDER_DETAIL, USER_DETAIL } from '../Contants';
+import { AppContext } from '../../UseContext';
 
 
 const OrderConfirm = () => {
-    const OrderDetail = ( JSON.parse(localStorage.getItem(ORDER_DETAIL)) || [] );
+    const { ReloadCart } =useContext(AppContext);
+    const OrderDetail = (JSON.parse(localStorage.getItem(ORDER_DETAIL)) || []);
     const Product = JSON.parse(localStorage.getItem(CART_ITEMS_LOCAL_STORAGE_KEY));
     const PersonalDetail = JSON.parse(localStorage.getItem(USER_DETAIL));
 
@@ -75,11 +77,12 @@ const OrderConfirm = () => {
                     onClick={() => {
                         cleanCart('react-sc-state-cart-items');
                         saveOrders(Product, PersonalDetail, OrderDetail);
+                        ReloadCart( cleanCart(CART_ITEMS_LOCAL_STORAGE_KEY) )
                     }}
                     variant="contained"
                     color="primary"
-                component={Link}
-                to="/"
+                    component={Link}
+                    to="/"
                 >
                     Back to Home
                 </Button>

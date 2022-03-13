@@ -63,13 +63,21 @@ export const Provider = ({ children }) => {
         })
     }
 
+    const ReloadCart = (cart) =>{
+        dispatchR({
+            type: 'RELOADCART',
+            payload: cart
+        })
+    }
+
 
     return (
         <AppContext.Provider value={{
             stateR,
             PersonalData,
             AddressData,
-            PaymentData
+            PaymentData,
+            ReloadCart
         }}>
             {children}
         </AppContext.Provider>

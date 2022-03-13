@@ -14,11 +14,16 @@ export const ControlStateR = (state, action) => {
                 ...state,
                 address: payload
             }
-            case 'PAYMENTDATA':
-                return {
-                    ...state,
-                    creditCard: payload
-                }
+        case 'PAYMENTDATA':
+            return {
+                ...state,
+                creditCard: payload
+            }
+        case 'RELOADCART':
+            return{
+                ...state,
+                cartItems: payload
+            }
 
         default:
             return state

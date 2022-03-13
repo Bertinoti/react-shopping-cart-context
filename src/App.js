@@ -32,6 +32,7 @@ function buildNewCartItem(cartItem) {
 
 
 function App() {
+  
   const [products, setProducts] = useState(() =>
     loadLocalStorageItems(PRODUCTS_LOCAL_STORAGE_KEY, []),
   );
@@ -45,7 +46,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
-
+  
+  useEffect(() => {
+    setCartItems(loadLocalStorageItems(CART_ITEMS_LOCAL_STORAGE_KEY, []))
+  }, [cartItems])
+  
   useEffect(() => {
     if (products.length === 0) {
       setIsLoading(true);
