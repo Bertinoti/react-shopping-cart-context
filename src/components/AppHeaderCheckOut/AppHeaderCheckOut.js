@@ -9,14 +9,14 @@ function AppHeaderCheckOut({ ...props }) {
       <div className="container-fluid">
         <div className="row">
           <nav className="navbar navbar-expand navbar-dark">
-            {/* <NavLink
+            <NavLink
               exact
               activeClassName="active"
               className="navbar-brand"
               to="/"
             >
-              Personal Detail
-            </NavLink> */}
+              Home
+            </NavLink>
 
             <ul className="navbar-nav mr-auto navbar-checkout">
               <li className="nav-item">
@@ -24,7 +24,7 @@ function AppHeaderCheckOut({ ...props }) {
                   exact
                   activeClassName="active"
                   className="nav-link"
-                  to="/checkout"
+                  to="/checkout/personalDetail"
                 >
                   Personal Detail
                 </NavLink>
@@ -34,7 +34,7 @@ function AppHeaderCheckOut({ ...props }) {
                   exact
                   activeClassName="active"
                   className="nav-link"
-                  to="/checkout"
+                  to="/checkout/billingDetail"
                 >
                   Billind Address
                 </NavLink>
@@ -44,7 +44,7 @@ function AppHeaderCheckOut({ ...props }) {
                   exact
                   activeClassName="active"
                   className="nav-link"
-                  to="/checkout"
+                  to="/checkout/paymentDetail"
                 >
                   Payment Detail
                 </NavLink>
@@ -54,7 +54,7 @@ function AppHeaderCheckOut({ ...props }) {
                   exact
                   activeClassName="active"
                   className="nav-link"
-                  to="/checkout"
+                  to="/checkout/orderConfirm"
                 >
                   Order Confirmed
                 </NavLink>

@@ -8,7 +8,8 @@ import * as api from "./api";
 
 import useLocalStorage from "./hooks/useLocalStorage";
 import loadLocalStorageItems from "./utils/loadLocalStorageItems";
-import Checkout from "./components/Checkout";
+import Checkout from "./components/Checkout/Checkout";
+
 
 function buildNewCartItem(cartItem) {
   if (cartItem.quantity >= cartItem.unitsInStock) {

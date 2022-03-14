@@ -5,8 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import './style.scss'
 
-// import Box from '@mui/material/Box';
-// import MenuItem from '@material-ui/core/MenuItem';
+
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,11 +14,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import valid from "card-validator";
 import Checkbox from '@material-ui/core/Checkbox';
 
-// import DatePicker from 'react-date-picker';
-// import DatePicker from '@mui/lab/DatePicker';
-
-
-import './style.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../UseContext';
 
@@ -97,7 +91,7 @@ const validationSchema = yup.object({
 
 const Payment = () => {
     const location = useHistory();
-    const {PaymentData} = useContext(AppContext);
+    const {PaymentData,checkForm} = useContext(AppContext);
     const formik = useFormik({
         initialValues: {
             method: null,
@@ -111,6 +105,7 @@ const Payment = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            checkForm('PAYMENT_DETAIL', true)
             PaymentData(values)
             location.push('/checkout/orderConfirm')
         },
@@ -118,21 +113,6 @@ const Payment = () => {
     return (
         <div className='formSection'>
             <form onSubmit={formik.handleSubmit}>
-                {/* <TextField
-                    name='currency'
-                    id="outlined-select-currency"
-                    select
-                    label="Select"
-                    value={formik.values.currency}
-                    onChange={formik.handleChange}
-                    helperText="Please select your currency"
-                >
-                    {currencies.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField> */}
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Payment Method</FormLabel>
                     <RadioGroup
@@ -186,18 +166,6 @@ const Payment = () => {
                             onChange={formik.handleChange}
                             error={formik.touched.cardNumber && Boolean(formik.errors.cardNumber)}
                             helperText={formik.touched.cardNumber && formik.errors.cardNumber} />
-
-
-                        {/* <DatePicker
-                            views={['year', 'month']}
-                            label="Year and Month"
-                            minDate={new Date('2012-03-01')}
-                            maxDate={new Date('2023-06-01')}
-                            value={value}
-                            onChange={(newValue) => {
-                                setValue(newValue);
-                            }}
-                        /> */}
                         <div>
                             <TextField
                                 fullWidth
@@ -224,20 +192,6 @@ const Payment = () => {
                                 error={formik.touched.expiredDateYear && Boolean(formik.errors.expiredDateYear)}
                                 helperText={formik.touched.expiredDateYear && formik.errors.expiredDateYear} />
                         </div>
-
-
-                        {/* <TextField
-                            fullWidth
-                            type='date'
-                            views={["year", "month"]}
-                            id="expiredDate"
-                            name="expiredDate"
-                            label="Expiration Date"
-                            value={formik.values.expiredDate}
-                            onChange={formik.handleChange}
-                            error={formik.touched.expiredDate && Boolean(formik.errors.expiredDate)}
-                            helperText={formik.touched.expiredDate && formik.errors.expiredDate} /> */}
-
                         <TextField
                             fullWidth
                             id="cvc"

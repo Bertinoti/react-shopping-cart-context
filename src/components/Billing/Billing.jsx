@@ -30,11 +30,11 @@ const validationSchema = yup.object({
 
 const Billing = () => {
     const location = useHistory()
-    const { AddressData } = useContext(AppContext)
-
+    const { AddressData, checkForm } = useContext(AppContext)
+    
     const formik = useFormik({
         initialValues: {
-            country: null,
+            country: 'Spain',
             region: '',
             city: '',
             address: '',
@@ -42,10 +42,14 @@ const Billing = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            checkForm('BILLING_DETAIL', true)
             AddressData(values);
-            location.push('/checkout/paymentDetail')
+                location.push('/checkout/paymentDetail')
         },
     });
+
+    // const divForm = document.querySelector('.formDiv')
+    // console.log(divForm)
 
     return (
         <div className='formSection'>

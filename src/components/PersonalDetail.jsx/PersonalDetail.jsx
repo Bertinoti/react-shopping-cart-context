@@ -8,6 +8,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { AppContext } from '../../UseContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './style.scss'
 
 const validationSchema = yup.object({
     fullName: yup
@@ -27,6 +28,7 @@ const validationSchema = yup.object({
 
 const PersonalDetail = () => {
     const location = useHistory()
+    const { checkForm } = useContext(AppContext)
     const { PersonalData } = useContext(AppContext)
     const formik = useFormik({
         initialValues: {
@@ -36,14 +38,15 @@ const PersonalDetail = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            checkForm('PERSONAL_DETAIL', true)
             PersonalData(values);
-            location.push('/checkout/billingDetail')
+                location.push('/checkout/billingDetail')
         },
     });
 
     return (
         <div className='formSection'>
-            <form onSubmit={formik.handleSubmit}>
+            <form  onSubmit={formik.handleSubmit}>
                 <TextField
                     fullWidth
                     id="fullName"
@@ -66,22 +69,27 @@ const PersonalDetail = () => {
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                 />
-                <PhoneInput
-                    fullWidth
-                    placeholder='677 898 989'
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    value={formik.values.phoneNumber}
-                    // eslint-disable-next-line
-                    onChange={value => formik.values.phoneNumber = value}
-                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                    country='es'
-                    regions='europe'
-                />
-                <Button color="primary" variant="contained" fullWidth type="submit">
-                    Next
-                </Button>
+                <div className='divSpace'>
+
+                    <PhoneInput
+                        fullWidth
+                        placeholder='677 898 989'
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        value={formik.values.phoneNumber}
+                        // eslint-disable-next-line
+                        onChange={value => formik.values.phoneNumber = value}
+                        error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                        helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                        country='es'
+                        regions='europe'
+                    />
+                </div>
+                <div className='divSpace'>
+                    <Button color="primary" variant="contained" fullWidth type="submit">
+                        Next
+                    </Button>
+                </div>
             </form>
         </div>
     );

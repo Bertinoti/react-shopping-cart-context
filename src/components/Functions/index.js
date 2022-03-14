@@ -1,41 +1,45 @@
-// export const loadDatos = () => {
-//     return JSON.parse(localStorage.getItem('CheckoutDetail')) || [];
-// }
+import { ORDER_DETAIL } from "../Constants";
 
 
-// export function checkoutData() {
-//     return (
-//         {
-//             fullname: fullname,
-//             email: email,
-//             phonenumber: phonenumber,
-//             address: {
-//                 country: country,
-//                 region: region,
-//                 city: city,
-//                 direction: direction,
-//                 postalcode: postalcode
-//             },
-//             paypal: {
-//                 paypalemail: paypalemail
-//             },
-//             creditCard: {
-//                 cardHolder: cardHolder,
-//                 cardNumber: cardNumber,
-//                 expireDate: expireDate,
-//                 cvc: cvc,
-//                 conditions: conditions
-//             },
+export const getCartTotal = (cart) => {
+    return cart.reduce((accum, item) => {
+        return accum + item.price * item.quantity;
+    }, 0);
+}
 
+export const cleanCart = (name) => {
+    localStorage.setItem(name, [])
+}
+
+export const saveOrders = (products, userDetail, orderList) => {
+
+    console.log(orderList)
+
+    const order = {
+        productDetail: products,
+        UserDetail: userDetail
+    }
+
+    cleanCart('react-sc-state-cart-items')
+    console.log(order)
+
+    orderList.push(order)
+    console.log(orderList)
+
+    localStorage.setItem(ORDER_DETAIL, JSON.stringify(orderList))
+}
+
+
+// export const LoadLocalStorageItems = (storageKey, defaultValue) => {
+//     const data = localStorage.getItem(storageKey);
+
+//     if (data) {
+//         try {
+//             return JSON.parse(data);
+//         } catch (error) {
+//             return defaultValue;
 //         }
-//     )
-// }
-
-
-// export function userName() {
-
-// }
-
-// export function createDate() {
-
+//     } else {
+//         return defaultValue;
+//     }
 // }
